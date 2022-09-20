@@ -1,0 +1,28 @@
+<form [formGroup]="form" >
+  <div class="mb-3">
+    <label for="username" class="form-label">Email address</label>
+    <input
+    formControlName="username"
+    type="email"
+     class="form-control"
+     id="username"
+    >
+<div class="alert alert-danger" *ngIf="form.get('username')?.['touched'] &&  username?.['invalid']">
+  <div *ngIf="username?.errors?.['required']"> username  is  required </div>
+  <div *ngIf="username?.errors?.['minlength']"> min doit avoir au moins {{ username?.errors?.["minlength"].requiredLength  }}/{{ username?.errors?.["minlength"].actualLength }} </div>
+  <div *ngIf="username?.errors?.['connotContainSpace']"> username  ne doit pas avoir des espaces ! </div>
+</div>
+  </div>
+  <div class="mb-3">
+    <label for="password" class="form-label" >Password</label>
+    <input type="password" class="form-control" id="password"  formControlName="password">
+<div class="alert alert-danger" *ngIf="form.get('password')?.['touched'] &&  password?.['invalid']">
+  <div *ngIf="password?.errors?.['required']"> password  is  required </div>
+  <div *ngIf="password?.errors?.['minlength']"> min doit avoir au moins 4 </div>
+
+</div>
+
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

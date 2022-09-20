@@ -1,0 +1,39 @@
+<h1> {{title}}  => {{getTitle()}}</h1>
+
+<ul>
+  <li *ngFor="let course of courses">
+    {{course}}
+  </li>
+</ul>
+<h1 [style.backgroundColor]="isActive ? 'blue' :'red'">{{ title }}</h1>
+
+<img src="{{ Image }}" alt="{{ title }}" />
+<h1 [textContent]="title"></h1>
+<img [src]="Image" [alt]="title" />
+
+<input type="text" (keyup.enter)="onKeyUp($event)">
+
+<br><br>
+
+<input #email type="text" (keyup.enter)="onKeyUp1(email)">
+
+<br><br>
+
+<input  [(ngModel)]="Email" type="text" (keyup.enter)="onKeyUp2()">
+
+<div (click)="onClickDiv($event)">
+  <button (click)="onClick($event)"  class="btn btn-primary" [class.active]="isActive">Mon button</button>
+</div>
+
+<p>{{Email}}</p>
+
+<div class="container">
+<ul class="list-group">
+<li class="list-group-item">titre : {{course.titre | uppercase}}</li>
+<li class="list-group-item">avis : {{course.avis | number:'2.1-3'}}</li>
+<li class="list-group-item">participants : {{course.participants}}</li>
+<li class="list-group-item">prix : {{course.prix | currency:'CAD':'symbol':'3.1-1'}}</li>
+<li class="list-group-item">publicationData : {{course.publicationData| date:'yyyy-mm-dd'}}</li>
+<!-- /*'fullDate':'shortDate':*/ -->
+</ul>
+</div>

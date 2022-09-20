@@ -1,0 +1,13 @@
+<br><br>
+<h2>User Git </h2>
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let user of users">
+    <h4>{{user.login}}</h4>
+    <img src="{{user.avatar_url}}" alt="avatar" style="width:200px; height:200px ; border-radius: 50%; margin-right: 30px;">
+    <div>{{user.id}}</div>
+    <a [routerLink]="['/followres/',user.login,user.id]"
+        [queryParams]="{page : 1 , type : user.type ,var : 'val'}"
+    >{{user.url}}</a>
+
+  </li>
+</ul>

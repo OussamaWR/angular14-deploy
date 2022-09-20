@@ -1,0 +1,78 @@
+<form #f="ngForm" (ngSubmit)="submit(f)">
+
+  <div ngModelGroup="contact">
+
+    <div class="mb-3">
+      <label for="firstname" class="form-label">First Name</label>
+      <input
+      required
+      maxlength="10"
+      minlength="4"
+      pattern="[a-zA-Z]+"
+      type="text" class="form-control"
+      #firstname="ngModel"
+      ngModel name="firstname"
+      (change)="log(firstname)"
+      >
+
+
+
+      <div class="alert alert-danger" *ngIf="firstname.touched && !firstname.valid">
+        <div *ngIf=" firstname.touched && firstname.errors?.['required'] ">
+          ce champs est oblegatoire
+        </div>
+        <div *ngIf="firstname.errors?.['pattern']">
+          Ce champs doit etre alpha
+        </div>
+        <div *ngIf="firstname.errors?.['minlength']">
+          Ce champs doit avoir au moins
+          {{firstname.errors?.['minlength'].requiredLength}} chars ,
+          tu ecrit juste {{firstname.errors?.['minlength'].actualLength}} !!
+        </div>
+      </div>
+    </div>
+
+
+    <div class="mb-3">
+      <label for="lastname" class="form-label">Last Name</label>
+      <input type="text" class="form-control" ngModel name="lastname" #lastname>
+    </div>
+
+  </div>
+
+
+  <div class="checkbox">
+    <label  >
+      <input type="checkbox"  ngModel name="abonnement"> S'abonner
+    </label>
+  </div>
+
+  <div class="form-group">
+    <label for="ContactMethode">Methode de contact </label>
+    <select multiple class="form-select" ngModel name="ContactMethode" id="ContactMethode">
+        <option  *ngFor="let methode of ContactMethode;index as i " [ngValue]="methode" >{{methode.name}}</option>
+
+    </select></div>
+
+
+    <div class="radio" *ngFor="let conatct of ContactMethode">
+      <label for="" ></label>
+      <input type="radio"  ngModel name="contactMethode2" [value]="conatct.id">
+      {{conatct.name}}
+    </div>
+
+
+
+
+  <div class="mb-3">
+    <label for="comment" class="form-label">comment</label>
+    <textarea ngModel name="comment" #comment="ngModel"  type="text"
+      class="form-control"></textarea>
+  </div>
+<div class="form-group" >
+    <button type="submit" class="btn btn-primary" [disabled]="!f.valid" >enregistrer</button>
+</div>
+
+</form>
+
+<p>{{f.value | json}}</p>
